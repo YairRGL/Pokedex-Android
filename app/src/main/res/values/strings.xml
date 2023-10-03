@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_title">Pokédex - Yair Reyes</string>
+    <string name="string_login_username">Ingresa tu nombre</string>
+    <string name="string_login_welcome_msg">¡Bienvenido!</string>
+    <string name="string_login_button">Ingresar</string>
+    <string name="string_error_username">Nombre no válido</string>
+</resources>
