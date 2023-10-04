@@ -6,4 +6,9 @@
     <string name="string_login_welcome_msg">¡Bienvenido!</string>
     <string name="string_login_button">Ingresar</string>
     <string name="string_error_username">Nombre no válido</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_map">Mapa</string>
+    <string name="string_start_searchpokemon">Iniciar búsqueda Pokémon</string>
+    <string name="string_stop_searchpokemon">Detener búsqueda Pokémon</string>
 </resources>

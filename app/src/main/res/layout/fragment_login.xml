@@ -85,6 +85,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:inputType="text"
+                    android:maxLength="20"
+                    android:drawableStart="@drawable/ic_user"
+                    android:drawablePadding="10dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 

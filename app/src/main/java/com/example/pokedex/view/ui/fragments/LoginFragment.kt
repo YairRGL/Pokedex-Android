@@ -1,10 +1,9 @@
 package com.example.pokedex.view.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokedex.R
+import com.example.pokedex.view.ui.activities.HomeActivity
 import com.example.pokedex.viewmodel.LoginViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -41,17 +41,6 @@ class LoginFragment : Fragment() {
         val txtInputLayoutUsername = view.findViewById(R.id.txtInputUsername) as TextInputLayout
         val txtUsername = view.findViewById(R.id.editTxtInputUsername) as TextInputEditText
 
-        view.isFocusableInTouchMode = true
-        view.requestFocus()
-        view.setOnKeyListener { _, keyCode, _ ->
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                requireActivity().finishAffinity()
-                true
-            } else {
-                false
-            }
-        }
-
         btnLogin.setOnClickListener{
             val username = txtUsername.text.toString()
             viewModel.validateAndSaveUsername(username)
@@ -59,9 +48,9 @@ class LoginFragment : Fragment() {
 
         viewModel.isUsernameValid.observe(viewLifecycleOwner) { isValid ->
             if (isValid) {
-                Toast.makeText(activity?.applicationContext, "Iniciando.", Toast.LENGTH_SHORT).show()
+                launchHomeActivity()
             } else {
-                Toast.makeText(activity?.applicationContext, "Compruebe su nombre de usuario...", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity?.applicationContext, "Compruebe su nombre de usuario.", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -83,6 +72,12 @@ class LoginFragment : Fragment() {
             }
         })
 
+    }
+
+    fun launchHomeActivity(){
+        val intent = Intent(requireActivity(), HomeActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
 }

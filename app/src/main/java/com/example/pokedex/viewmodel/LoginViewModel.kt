@@ -1,15 +1,11 @@
 package com.example.pokedex.viewmodel
 
 import android.app.Application
-import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
-import com.example.pokedex.model.User
-import com.example.pokedex.model.UserSessionManager
-import com.google.gson.Gson
+import com.example.pokedex.data.model.User
+import com.example.pokedex.data.UserSessionManager
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 

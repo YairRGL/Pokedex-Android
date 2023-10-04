@@ -7,5 +7,16 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="Base.Theme.Pokedex.Home" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/red</item>
+        <item name="android:statusBarColor">#780000</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
     <style name="Theme.Pokedex" parent="Base.Theme.Pokedex" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#EFEFEF</item>
+    </style>
+
 </resources>

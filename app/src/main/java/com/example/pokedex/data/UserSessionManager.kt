@@ -1,7 +1,8 @@
-package com.example.pokedex.model
+package com.example.pokedex.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.pokedex.data.model.User
 import com.google.gson.Gson
 
 class UserSessionManager(context: Context) {
@@ -11,7 +12,6 @@ class UserSessionManager(context: Context) {
 
     companion object {
         private const val PREF_NAME = "UserSession"
-        private const val PRIVATE_MODE = 0
         private const val KEY_USER = "user"
     }
 

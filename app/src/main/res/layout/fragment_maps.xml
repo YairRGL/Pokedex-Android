@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.fragments.MapsFragment" />
+    tools:context=".view.ui.fragments.map.MapsFragment">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:theme="@style/Theme.MaterialComponents"
+        android:id="@+id/btnStartPokemonSearch"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_search_map"
+        android:text="@string/string_start_searchpokemon"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:iconGravity="start"
+        app:icon="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

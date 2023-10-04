@@ -1,4 +1,4 @@
-package com.example.pokedex.view.ui
+package com.example.pokedex.view.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,4 +9,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        finish()
+    }
+
 }
