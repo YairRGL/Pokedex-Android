@@ -11,4 +11,16 @@
     <string name="title_map">Mapa</string>
     <string name="string_start_searchpokemon">Iniciar búsqueda Pokémon</string>
     <string name="string_stop_searchpokemon">Detener búsqueda Pokémon</string>
+    <string name="string_btn_showpokemon">Mostrar Pokémon</string>
+    <string name="string_name_pokemon">¿Quien es ese Pokemon?</string>
+    <string name="string_new_pokemon">¡Nuevo Pokémon descubierto!</string>
+    <string name="string_try_again">Inténtalo de nuevo</string>
+    <string name="string_pokemon_number">#?</string>
+    <string name="string_height">Altura</string>
+    <string name="string_weight">Peso</string>
+    <string name="string_default_height">/? M</string>
+    <string name="string_default_weight">/? KG</string>
+    <string name="string_pokemon_number_home">#%1$s</string>
+    <string name="string_pokemon_height_format">%1$s M</string>
+    <string name="string_pokemon_weight_format">%1$s KG</string>
 </resources>

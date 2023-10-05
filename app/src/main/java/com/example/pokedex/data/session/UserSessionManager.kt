@@ -1,4 +1,4 @@
-package com.example.pokedex.data
+package com.example.pokedex.data.session
 
 import android.content.Context
 import android.content.SharedPreferences

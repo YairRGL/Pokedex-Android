@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -68,5 +69,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
     implementation("com.google.code.gson:gson:2.10.1")
-
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("androidx.palette:palette-ktx:1.0.0")
+    kapt ("com.github.bumptech.glide:compiler:4.15.1")
 }

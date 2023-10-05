@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.R
-import com.example.pokedex.data.UserSessionManager
+import com.example.pokedex.data.session.UserSessionManager
 import com.example.pokedex.view.ui.activities.HomeActivity
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
@@ -34,7 +34,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             } else {
                 findNavController().navigate(R.id.navigate_splashFragment_to_loginFragment)
             }
-        }, 3500)
+        }, 3000)
 
     }
 

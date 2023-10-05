@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pokedex.data.model.User
-import com.example.pokedex.data.UserSessionManager
+import com.example.pokedex.data.session.UserSessionManager
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 

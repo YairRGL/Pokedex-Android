@@ -1,8 +1,7 @@
-package com.example.pokedex.view.ui.fragments.map
+package com.example.pokedex.view.ui.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.ActivityManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -18,12 +17,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.R
-import com.example.pokedex.data.location.hasLocationPermission
+import com.example.pokedex.utils.hasLocationPermission
+import com.example.pokedex.utils.isMyServiceRunning
 import com.example.pokedex.data.services.LocationService
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 
 class MapsFragment : Fragment() {
+    private lateinit var btnSearch: Button
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -47,29 +48,46 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-        val btnSearch = view.findViewById(R.id.btnStartPokemonSearch) as Button
+        setupNotifications()
+        btnSearch = view.findViewById(R.id.btnStartPokemonSearch) as Button
+        updateButtonText()
 
         btnSearch.setOnClickListener{
-            val intent = Intent(requireActivity().applicationContext, LocationService::class.java)
-
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
-                requestNotificationPermission()
-            }
-
-            createChannel()
-
-            // TODO: WIP
-            if (isMyServiceRunning()) {
-                intent.action = LocationService.ACTION_STOP
-                btnSearch.text = "Iniciar búsqueda"
+            if (!requireActivity().isMyServiceRunning(LocationService::class.java)) {
+                if(requireActivity().applicationContext.hasLocationPermission()){
+                    Intent(context, LocationService::class.java).apply {
+                        action = LocationService.ACTION_START
+                        requireActivity().startService(this)
+                    }
+                    btnSearch.text = getText(R.string.string_stop_searchpokemon)
+                } else {
+                    launcher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                }
             } else {
-                intent.action = LocationService.ACTION_START
-                btnSearch.text = "Terminar búsqueda"
+                Intent(context, LocationService::class.java).apply {
+                    action = LocationService.ACTION_STOP
+                    requireActivity().startService(this)
+                }
+                btnSearch.text = getText(R.string.string_start_searchpokemon)
             }
-            requireActivity().startService(intent)
-
         }
 
+    }
+
+    private fun setupNotifications() {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            requestNotificationPermission()
+        }
+
+        createChannel()
+    }
+
+    private fun updateButtonText() {
+        if (requireActivity().isMyServiceRunning(LocationService::class.java)) {
+            btnSearch.text = getText(R.string.string_stop_searchpokemon)
+        } else {
+            btnSearch.text = getText(R.string.string_start_searchpokemon)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -83,17 +101,6 @@ class MapsFragment : Fragment() {
             val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
-    }
-
-    private fun isMyServiceRunning(): Boolean {
-        val manager =
-            requireActivity().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
-            if (LocationService::class.java.getName() == service.service.className) {
-                return true
-            }
-        }
-        return false
     }
 
     val launcher = registerForActivityResult(
